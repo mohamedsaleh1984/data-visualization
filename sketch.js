@@ -8,9 +8,8 @@ let previousAnomaly = 0;
 let currentRow = 1;
 let currentMonth = 0;
 
-
-
 let data;
+
 let months = [
   "Mar",
   "Apr",
@@ -33,7 +32,7 @@ function preload() {
 
 function setup() {
   //Set the size of the canvas
-  createCanvas(700, 700);
+  createCanvas(1200, 700);
 }
 
 function draw() {
@@ -54,7 +53,7 @@ function draw() {
 
   drawMonthCircle();
 
-  //drawMonths();
+  drawMonths();
 
   drawYear(currentRow);
 
@@ -182,9 +181,9 @@ function drawMonths() {
 
     let angle = map(i, 0, months.length, 0, TWO_PI);
     push();
-    let x = monthRadis * cos(angle);
-    let y = monthRadis * sin(angle);
-    console.log(`(${x},${y}) ${months[i]}`);
+    let x = 285 * cos(angle);
+    let y = 285 * sin(angle);
+    //console.log(`(${x},${y}) ${months[i]}`);
     translate(x, y);
     rotate(angle + PI / 2);
     text(months[i], 0, 0);

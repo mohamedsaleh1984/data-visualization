@@ -1,4 +1,5 @@
 const fileName = "giss-data-may-29-2023.csv";
+const fontPath = "assets/SourceSansPro-Black.ttf"
 let shift = 10;
 let zeroRadius = 125;
 let oneRadius = 200;
@@ -8,6 +9,9 @@ let currentColor = 0;
 
 let currentRow = 1;
 let currentMonth = 0;
+
+var w = window.innerWidth;
+var h = window.innerHeight; 
 
 let data;
 
@@ -29,11 +33,15 @@ let months = [
 function preload() {
   //Load the data from the csv file.
   data = loadTable(fileName, "csv", "header");
+  font = loadFont(fontPath);
 }
 
 function setup() {
   //Set the size of the canvas
-  createCanvas(1200, 700);
+  createCanvas(w, h);
+  //set up the font
+  textFont(font);
+  //set up default color for year
   currentColor = color(255);
 }
 
@@ -73,7 +81,6 @@ function drawUntil() {
       noLoop();
     }
   }
-  //frameRate(10);
 }
 
 function drawLines(currentRow) {
@@ -119,7 +126,7 @@ function drawLines(currentRow) {
           }
 
           currentColor = lineColor;
-          
+
           stroke(lineColor);        
           line(x1, y1, x2, y2);
         }
@@ -159,7 +166,7 @@ function drawZeroSign() {
 }
 
 function drawOneCircle() {
-  stroke(255);
+  stroke(0,255,0);
   strokeWeight(2);
   noFill();
   circle(0, 0, oneRadius * 2);
@@ -172,7 +179,7 @@ function drawOneSign() {
 }
 
 function drawMonthCircle() {
-  stroke(255);
+  stroke(30,144,255);
   strokeWeight(2);
   noFill();
   circle(0, 0, 550);
@@ -181,13 +188,13 @@ function drawMonthCircle() {
 function drawMonths() {
   for (let i = 0; i < months.length; i++) {
     noStroke();
-    fill(255);
+    fill(128);
     textSize(24);
 
     let angle = map(i, 0, months.length, 0, TWO_PI);
     push();
-    let x = 285 * cos(angle);
-    let y = 285 * sin(angle);
+    let x = 290 * cos(angle);
+    let y = 290 * sin(angle);
     //console.log(`(${x},${y}) ${months[i]}`);
     translate(x, y);
     rotate(angle + PI / 2);

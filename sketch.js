@@ -13,6 +13,8 @@ let currentMonth = 0;
 var w = window.innerWidth;
 var h = window.innerHeight; 
 
+var yearFontSize = 22;
+
 let data;
 
 let months = [
@@ -143,8 +145,9 @@ function drawLines(currentRow) {
 function drawYear(currentRow) {
   let year = data.getRow(currentRow).get("Year");
   fill(currentColor);
-  textSize(22);
+  textSize(yearFontSize);
   text(year, 0, 0);
+ 
 }
 
 function drawZeroCircle() {
@@ -201,4 +204,10 @@ function drawMonths() {
     text(months[i], 0, 0);
     pop();
   }
+}
+
+function windowResized() {
+  w = window.innerWidth;
+  h = window.innerHeight;  
+  resizeCanvas(w, h);
 }

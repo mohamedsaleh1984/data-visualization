@@ -4,6 +4,7 @@ let zeroRadius = 125;
 let oneRadius = 200;
 let monthRadis = 550;
 let previousAnomaly = 0;
+let currentColor = 0;
 
 let currentRow = 1;
 let currentMonth = 0;
@@ -33,6 +34,7 @@ function preload() {
 function setup() {
   //Set the size of the canvas
   createCanvas(1200, 700);
+  currentColor = color(255);
 }
 
 function draw() {
@@ -116,6 +118,8 @@ function drawLines(currentRow) {
             lineColor = lerpColor(zero,warm,abs(avg));
           }
 
+          currentColor = lineColor;
+          
           stroke(lineColor);        
           line(x1, y1, x2, y2);
         }
@@ -131,6 +135,7 @@ function drawLines(currentRow) {
 
 function drawYear(currentRow) {
   let year = data.getRow(currentRow).get("Year");
+  fill(currentColor);
   textSize(22);
   text(year, 0, 0);
 }
